@@ -34,6 +34,7 @@ import dji.common.camera.SettingsDefinitions.SDCardOperationState
 import dji.common.camera.SettingsDefinitions.SDCardOperationState.*
 import dji.thirdparty.io.reactivex.Flowable
 import dji.ux.beta.R
+import dji.ux.beta.R.styleable.SDCardStatusListItemWidget
 import dji.ux.beta.core.base.DJISDKModel
 import dji.ux.beta.core.base.SchedulerProvider
 import dji.ux.beta.core.base.UXSDKError
@@ -66,7 +67,7 @@ open class SDCardStatusListItemWidget @JvmOverloads constructor(
     /**
      * Icon for the dialog which shows format confirmation message
      */
-    var formatConfirmationDialogIcon: Drawable? = getDrawable(R.drawable.uxsdk_ic_alert_yellow)
+    private var formatConfirmationDialogIcon: Drawable? = getDrawable(R.drawable.uxsdk_ic_alert_yellow)
 
     /**
      * Icon for the dialog which shows format success message
@@ -76,7 +77,7 @@ open class SDCardStatusListItemWidget @JvmOverloads constructor(
     /**
      * Icon for the dialog which shows format error message
      */
-    var formatErrorDialogIcon: Drawable? = getDrawable(R.drawable.uxsdk_ic_alert_error)
+    private var formatErrorDialogIcon: Drawable? = getDrawable(R.drawable.uxsdk_ic_alert_error)
 
     private val widgetModel: SDCardStatusListItemWidgetModel by lazy {
         SDCardStatusListItemWidgetModel(
@@ -90,11 +91,12 @@ open class SDCardStatusListItemWidget @JvmOverloads constructor(
         listItemTitle = getString(R.string.uxsdk_list_item_sd_card)
         listItemButtonText = getString(R.string.uxsdk_list_item_format_button)
         attrs?.let { initAttributes(context, it) }
+
     }
 
     @SuppressLint("Recycle")
     private fun initAttributes(context: Context, attrs: AttributeSet) {
-        context.obtainStyledAttributes(attrs, R.styleable.SDCardStatusListItemWidget).use { typedArray ->
+        context.obtainStyledAttributes(attrs, SDCardStatusListItemWidget).use { typedArray ->
             typedArray.getDrawableAndUse(R.styleable.SDCardStatusListItemWidget_uxsdk_list_item_confirmation_dialog_icon) {
                 formatConfirmationDialogIcon = it
             }
