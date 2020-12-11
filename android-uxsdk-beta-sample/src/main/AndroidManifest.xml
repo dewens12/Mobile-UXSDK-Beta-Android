@@ -63,7 +63,7 @@
 
         <meta-data
             android:name="com.dji.sdk.API_KEY"
-            android:value="@string/dji_ux_sample_dji_sdk_api_key" />
+            android:value="0b83e157481d8a4a2533b10c" />
 
         <!-- Here Maps -->
         <meta-data
